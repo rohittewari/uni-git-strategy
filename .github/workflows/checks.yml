@@ -8,37 +8,21 @@ on:
   pull_request:
 
 jobs:
-  code-checkout:
-    name: Code Checkout
+  gradle-tests:
+    name: Run Gradle Checks
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
-
-      - name: Upload code as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: source-code
-          path: .
-  
-  gradle-tests:
-    name: Run Gradle Tests
-    runs-on: ubuntu-latest
-    needs: code-checkout
-    steps:
-      - name: Download source code
-        uses: actions/download-artifact@v3
-        with:
-          name: source-code
+        uses: actions/checkout@v5
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - name: Cache Gradle dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
