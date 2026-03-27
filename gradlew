@@ -125,8 +125,8 @@ if [ ! -f "$CLASSPATH" ] && [ -f "$LEGACY_CLASSPATH" ]; then
     CLASSPATH=$LEGACY_CLASSPATH
 fi
 
-if [ ! -f "$CLASSPATH" ] && [ -x "$APP_HOME/gradle/scripts/bootstrap-gradle-wrapper.sh" ]; then
-    "$APP_HOME/gradle/scripts/bootstrap-gradle-wrapper.sh" || exit $?
+if [ ! -f "$CLASSPATH" ] && [ -f "$APP_HOME/gradle/scripts/bootstrap-gradle-wrapper.sh" ]; then
+    sh "$APP_HOME/gradle/scripts/bootstrap-gradle-wrapper.sh" || exit $?
 fi
 
 if [ ! -f "$CLASSPATH" ]; then
