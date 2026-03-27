@@ -29,6 +29,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Make Gradle wrapper executable
+        run: chmod +x ./gradlew
+
       - name: Run Gradle Tests
         run: ./gradlew clean test
 
